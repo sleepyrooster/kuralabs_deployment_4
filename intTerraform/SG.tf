@@ -1,6 +1,7 @@
 resource "aws_security_group" "web_ssh" {
   name        = "ssh-access(Walter)"
   description = "open ssh traffic"
+   vpc_id      = aws_vpc.test_vpc.id
  
 
   ingress {
@@ -27,7 +28,7 @@ resource "aws_security_group" "web_ssh" {
   }
 
   tags = {
-    "Name" : "Web server001(Walter)"
+    "Name" : "Web server001(Walter Deployment 4)"
     "Terraform" : "true"
   }
   
