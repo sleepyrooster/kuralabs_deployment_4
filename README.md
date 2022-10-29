@@ -5,6 +5,12 @@ The goal of this deployment is to:
 - Use the Terraform CLI which is installed on the Jenkins server to create a VPC on AWS.
 
 ## Observation
+To acomplish this deployment, I went though the following actions:
+1) Spin up the Jenkins EC2 and install Terraform on this server.
+2) Once logged into the Jenkins EC2, head to the Manage credentials tab and add your AWS Access Key and AWS Secret Key credentials.
+3) Create a pipeline and connect the Github repository to this pipeline.
+4) Once the deployment was sucessful, add a destroy stage so that the VPC which was created using the Terraform folder.
+5) Run the deployment again and make sure the VPC was destroyed afterwards
 
 
 ## Changes to Pipline
@@ -33,3 +39,9 @@ To notify myself on any changes in the repository, i used the "watch" tab on the
 ![notifations](images/Notifcation1.png)
 
 ## Errors While Performing Deployment
+### Terrafrom Statelock Error
+After trying the deployment without the destroy stage, i tired to destroy it in terminal and ran the pipeline again with the destroy stage added to the jenkins file. However, the pipeline failed due to an error. To fix this error i needed to go to the `/var/lib/jenkins/workspace` and delte the entire folder.
+
+![Error](images/terraform_staelock_error.png)
+
+![solution](images/terraform_statelock_solution.png)
